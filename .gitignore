@@ -1,0 +1,21 @@
+# IntelliJ IDEA
+.idea/
+
+# Compiled classes and build artifacts
+target/
+out/
+
+# Gradle
+build/
+
+# Maven
+bin/
+log/
+target/
+
+# Eclipse
+bin/
+.classpath
+.project
+.settings/
+.metadata/
