@@ -1,0 +1,2 @@
+# AmuletQuest
+Minecraft spigot plugin
