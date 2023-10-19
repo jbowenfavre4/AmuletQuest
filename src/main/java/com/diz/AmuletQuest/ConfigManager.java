@@ -13,18 +13,29 @@ public class ConfigManager {
 
     private ConfigManager(JavaPlugin plugin) {
         this.plugin = plugin;
-        FileConfiguration config = this.plugin.getConfig();
-        for (String thing : config.getKeys(true)) {
-            configValues.put(thing, config.getString(thing));
-        }
+        initializeConfig();
+    }
+
+    public void initializeConfig() {
+        // load config async
+        plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
+
+            // import config file
+            plugin.getConfig().options().copyDefaults(true);
+            plugin.saveDefaultConfig();
+            FileConfiguration config = plugin.getConfig();
+
+            // populate config map
+            for (String key : config.getKeys(true)) {
+                configValues.put(key, config.getString(key));
+            }
+        });
     }
 
     public static ConfigManager getInstance(JavaPlugin plugin) {
         if (instance == null) {
             instance = new ConfigManager(plugin);
         }
-        plugin.getConfig().options().copyDefaults();
-        plugin.saveDefaultConfig();
         return instance;
     }
 

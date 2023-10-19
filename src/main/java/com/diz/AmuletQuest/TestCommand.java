@@ -11,7 +11,10 @@ public class TestCommand implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
 
         if (commandSender instanceof Player) {
-            System.out.println("The value from the config is: ");
+            System.out.println("quest drop mob: " + ConfigManager.getEntityTypeFromConfig("quest-drop-mob", Main.getQuestDefaultEntity()));
+            System.out.println("quest one mob: " + ConfigManager.getEntityTypeFromConfig("quest-one-mob", Main.getQuestDefaultEntity()));
+            System.out.println("quest two mob: " + ConfigManager.getEntityTypeFromConfig("quest-two-mob", Main.getQuestDefaultEntity()));
+            System.out.println("quest three mob: " + ConfigManager.getEntityTypeFromConfig("quest-three-mob", Main.getQuestDefaultEntity()));
         }
 
         return false;
