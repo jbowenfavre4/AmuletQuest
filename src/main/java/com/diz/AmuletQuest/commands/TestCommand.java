@@ -1,5 +1,7 @@
-package com.diz.AmuletQuest;
+package com.diz.AmuletQuest.commands;
 
+import com.diz.AmuletQuest.singeltons.ConfigManager;
+import com.diz.AmuletQuest.Main;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

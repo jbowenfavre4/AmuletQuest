@@ -1,5 +1,7 @@
-package com.diz.AmuletQuest;
+package com.diz.AmuletQuest.staticClasses;
 
+import com.diz.AmuletQuest.Main;
+import com.diz.AmuletQuest.singeltons.ConfigManager;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.EntityType;
 

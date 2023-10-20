@@ -1,4 +1,4 @@
-package com.diz.AmuletQuest;
+package com.diz.AmuletQuest.singeltons;
 
 import com.diz.AmuletQuest.questtracking.PlayerQuestData;
 import com.google.gson.Gson;
@@ -11,7 +11,11 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.UUID;
 
-// handles creating and maintaining the json file of PlayerQuestData objects
+/**
+ * This class handles creating, reading and updating the json file that stores PlayerQuestData objects.
+ *
+ * @author Bowen Revill
+ */
 public class FileManager {
 
     private static final String FILE_NAME = "questdata.json";

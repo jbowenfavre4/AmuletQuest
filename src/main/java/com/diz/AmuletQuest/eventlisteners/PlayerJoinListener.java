@@ -1,5 +1,5 @@
 package com.diz.AmuletQuest.eventlisteners;
-import com.diz.AmuletQuest.FileManager;
+import com.diz.AmuletQuest.singeltons.FileManager;
 import com.diz.AmuletQuest.questtracking.PlayerQuestData;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;

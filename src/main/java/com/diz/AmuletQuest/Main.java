@@ -1,9 +1,13 @@
 package com.diz.AmuletQuest;
 
+import com.diz.AmuletQuest.commands.SpeedCommand;
+import com.diz.AmuletQuest.commands.TestCommand;
 import com.diz.AmuletQuest.eventlisteners.EntityDeathListener;
 import com.diz.AmuletQuest.eventlisteners.PlayerJoinListener;
 import com.diz.AmuletQuest.eventlisteners.PlayerKillListener;
 import com.diz.AmuletQuest.eventlisteners.PlayerHoldQuestBookListener;
+import com.diz.AmuletQuest.singeltons.ConfigManager;
+import com.diz.AmuletQuest.singeltons.FileManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.Listener;

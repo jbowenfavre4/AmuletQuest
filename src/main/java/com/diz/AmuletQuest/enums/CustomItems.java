@@ -1,4 +1,4 @@
-package com.diz.AmuletQuest;
+package com.diz.AmuletQuest.enums;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

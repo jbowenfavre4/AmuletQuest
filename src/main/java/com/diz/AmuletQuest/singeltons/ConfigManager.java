@@ -1,10 +1,16 @@
-package com.diz.AmuletQuest;
+package com.diz.AmuletQuest.singeltons;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Singleton class responsible for creating config file if needed and saving the values on startup.
+ * Provides getters for other classes to get values from the config file.
+ *
+ * @author Bowen Revill
+ */
 public class ConfigManager {
 
     private static ConfigManager instance;
@@ -41,8 +47,8 @@ public class ConfigManager {
 
     public static String getStringFromConfig(String key, String defaultValue) {
         String value = configValues.get(key);
-        if (value instanceof String) {
-            if (value != null && !value.isEmpty()) {
+        if (value != null) {
+            if (!value.isEmpty()) {
                 return value;
             }
         }

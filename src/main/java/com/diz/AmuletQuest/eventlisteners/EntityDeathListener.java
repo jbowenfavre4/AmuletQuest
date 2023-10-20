@@ -1,7 +1,7 @@
 package com.diz.AmuletQuest.eventlisteners;
 
-import com.diz.AmuletQuest.ConfigManager;
-import com.diz.AmuletQuest.CustomItems;
+import com.diz.AmuletQuest.singeltons.ConfigManager;
+import com.diz.AmuletQuest.enums.CustomItems;
 import com.diz.AmuletQuest.Main;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

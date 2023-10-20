@@ -1,5 +1,10 @@
 package com.diz.AmuletQuest.questtracking;
 
+/**
+ * This class holds quest information and progress for a specific player.
+ *
+ * @author Bowen Revill
+ */
 public class PlayerQuestData {
 
     private String name;

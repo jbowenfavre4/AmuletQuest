@@ -1,4 +1,4 @@
-package com.diz.AmuletQuest;
+package com.diz.AmuletQuest.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
