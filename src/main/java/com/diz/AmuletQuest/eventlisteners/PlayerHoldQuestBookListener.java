@@ -1,5 +1,6 @@
 package com.diz.AmuletQuest.eventlisteners;
 import com.diz.AmuletQuest.staticClasses.LoreClass;
+import com.diz.AmuletQuest.staticClasses.QuestBookWriter;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,7 +23,7 @@ public class PlayerHoldQuestBookListener implements Listener {
             if (inHand.getItemMeta() instanceof BookMeta && ((BookMeta) inHand.getItemMeta()).getTitle().equals("dizQuestBook")) {
 
                 // pass the player and the book to the book writer to update the book
-                LoreClass.QuestBookWriter.writeToBook(e.getPlayer().getUniqueId(), inHand);
+                QuestBookWriter.writeToBook(e.getPlayer().getUniqueId(), inHand);
             }
         }
     }

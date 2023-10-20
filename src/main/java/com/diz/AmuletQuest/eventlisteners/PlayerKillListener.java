@@ -1,6 +1,7 @@
 package com.diz.AmuletQuest.eventlisteners;
 import com.diz.AmuletQuest.Main;
 import com.diz.AmuletQuest.enums.Lore;
+import com.diz.AmuletQuest.staticClasses.QuestManager;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,13 +19,13 @@ public class PlayerKillListener implements Listener {
             Player killer = e.getEntity().getKiller();
 
             if (killedType == ConfigManager.getEntityTypeFromConfig("quest-one-mob", Main.getQuestDefaultEntity())) {
-               Lore.QuestManager.questOneCheck(killer);
+               QuestManager.questOneCheck(killer);
 
             } else if (killedType == ConfigManager.getEntityTypeFromConfig("quest-two-mob", Main.getQuestDefaultEntity())) {
-                Lore.QuestManager.questTwoCheck(killer);
+                QuestManager.questTwoCheck(killer);
 
             } else if (killedType == ConfigManager.getEntityTypeFromConfig("quest-three-mob", Main.getQuestDefaultEntity())) {
-                Lore.QuestManager.questThreeCheck(killer);
+                QuestManager.questThreeCheck(killer);
             }
         }
 
