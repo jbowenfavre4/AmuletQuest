@@ -46,4 +46,4 @@ Note: Do not make any changes to the `quests.json` file.
 ### [v1.0.0](link to release)
 - Release Date: 2023-11-20
 - Initial Release
-  - Initial release of the plugin
+  - Initial release of the plugin for balance testing
