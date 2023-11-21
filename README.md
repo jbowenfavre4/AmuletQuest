@@ -43,7 +43,7 @@ You can customize the rate at which both amulets and questbooks drop by changing
 Note: Do not make any changes to the `quests.json` file. 
 
 ## Version History
-### [v1.0.0](link to release)
+### [v1.0.0](https://github.com/jbowenfavre4/AmuletQuest/releases/tag/v1.0.0)
 - Release Date: 2023-11-20
 - Initial Release
   - Initial release of the plugin for balance testing
