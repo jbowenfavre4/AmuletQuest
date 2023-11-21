@@ -1,14 +1,15 @@
 package com.diz.AmuletQuest.singeltons;
 
-import com.diz.AmuletQuest.questtracking.PlayerQuestData;
+import com.diz.AmuletQuest.data.Quest;
+import com.diz.AmuletQuest.data.quests.FindEntityQuest;
+import com.diz.AmuletQuest.data.quests.FishingQuest;
+import com.diz.AmuletQuest.data.quests.KillQuest;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.reflect.TypeToken;
+import com.google.gson.JsonObject;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.io.*;
-import java.lang.reflect.Type;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -17,13 +18,12 @@ import java.util.UUID;
  * @author Bowen Revill
  */
 public class FileManager {
-
-    private static final String FILE_NAME = "questdata.json";
+    private static final String QUESTS_FILE = "quests.json";
     private static FileManager instance;
-    private static File file;
+    private static File questsFile;
     private FileManager(JavaPlugin plugin) {
-        file = new File(plugin.getDataFolder(), FILE_NAME);
-        createJsonFile(plugin);
+        questsFile = new File(plugin.getDataFolder(), QUESTS_FILE);
+        createQuestsFile(plugin);
     }
 
     public static FileManager getInstance(JavaPlugin plugin) {
@@ -33,12 +33,29 @@ public class FileManager {
         return instance;
     }
 
-    public void createJsonFile(JavaPlugin plugin) {
+    public static void addQuest(Quest quest) {
+        Gson gson = new Gson();
+        JsonArray existing = readFile(questsFile);
+        JsonArray newJsonArray;
+        existing.add(gson.toJsonTree(quest));
+        newJsonArray = existing;
+
+        try {
+            Writer writer = new FileWriter(questsFile, false);
+            gson.toJson(newJsonArray, writer);
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void createQuestsFile(JavaPlugin plugin) {
         try {
             plugin.getDataFolder().mkdir();
-            if (!file.exists()) {
-                file.createNewFile();
-                Writer writer = new FileWriter(file);
+            if (!questsFile.exists()) {
+                questsFile.createNewFile();
+                Writer writer = new FileWriter(questsFile);
                 writer.write("[]");
                 writer.close();
             }
@@ -47,10 +64,10 @@ public class FileManager {
         }
     }
 
-    public static JsonArray readFile() {
+    public static JsonArray readFile(File readFile) {
         try {
             Gson gson = new Gson();
-            FileReader reader = new FileReader(file);
+            FileReader reader = new FileReader(readFile);
             JsonArray array = gson.fromJson(reader, JsonArray.class);
             return array;
         } catch (FileNotFoundException e) {
@@ -59,56 +76,48 @@ public class FileManager {
         }
     }
 
-    public static void addUser(String name, UUID uuid) {
-        Gson gson = new Gson();
-        JsonArray existing = readFile();
-        PlayerQuestData entry = new PlayerQuestData(name, uuid.toString());
-        JsonArray newJsonArray;
-        existing.add(gson.toJsonTree(entry));
-        newJsonArray = existing;
-
-        try {
-            Writer writer = new FileWriter(file, false);
-            gson.toJson(newJsonArray, writer);
-            writer.flush();
-            writer.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-
-    public static PlayerQuestData getUser(UUID uuid) {
+    public static Quest getQuest(UUID uuid) {
         String stringUuid = uuid.toString();
         Gson gson = new Gson();
-        JsonArray list = readFile();
+        JsonArray list = readFile(questsFile);
         for (JsonElement obj : list) {
-            PlayerQuestData questData = gson.fromJson(obj, PlayerQuestData.class);
-            if (questData.getUuid().equals(stringUuid)) {
-                return questData;
+            JsonObject jsonObj = obj.getAsJsonObject();
+            if (jsonObj.has("uuid")) {
+                if (jsonObj.get("uuid").toString().equals("\"" + stringUuid + "\"")) {
+                    Quest quest;
+                    switch(jsonObj.get("eventType").toString().replace("\"", "")) {
+                        case "PlayerInteractEntityEvent":
+                            quest = gson.fromJson(obj, FindEntityQuest.class);
+                            break;
+                        case "PlayerFishEvent":
+                            quest = gson.fromJson(obj, FishingQuest.class);
+                            break;
+                        default:
+                            quest = gson.fromJson(obj, KillQuest.class);
+                            break;
+                    }
+                    return quest;
+                }
             }
+
         }
         return null;
     }
 
-    private static List<PlayerQuestData> getObjectList() {
-        Gson gson = new Gson();
-        JsonArray array = readFile();
-        Type listType = new TypeToken<List<PlayerQuestData>>() {}.getType();
-        List<PlayerQuestData> objList = gson.fromJson(array, listType);
-        return objList;
+    private static JsonArray getQuests() {
+        return readFile(questsFile);
     }
 
-    public static void editUser(PlayerQuestData updatedItem) {
+    public static void editQuest(Quest quest) {
         Gson gson = new Gson();
-        List<PlayerQuestData> oldList = getObjectList();
+        JsonArray oldList = getQuests();
         for (int i = 0; i < oldList.size(); i++) {
-            if (oldList.get(i).getUuid().equals(updatedItem.getUuid())) {
-                oldList.set(i, updatedItem);
+            if (oldList.get(i).getAsJsonObject().get("uuid").toString().equals("\"" + quest.getUuid().toString() + "\"")) {
+                oldList.set(i, gson.toJsonTree(quest));
             }
         }
         try {
-            Writer writer = new FileWriter(file, false);
+            Writer writer = new FileWriter(questsFile, false);
             gson.toJson(gson.toJsonTree(oldList), writer);
             writer.flush();
             writer.close();

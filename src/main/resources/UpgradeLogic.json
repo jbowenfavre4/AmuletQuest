@@ -1,0 +1,30 @@
+{
+  "Common": {
+    "armor": 2,
+    "health": 2,
+    "speed": 0.01,
+    "strength": 0.5,
+    "knockback": 1
+  },
+  "Rare": {
+    "armor": 3,
+    "health": 4,
+    "speed": 0.015,
+    "strength": 1,
+    "knockback": 1
+  },
+  "Legendary": {
+    "armor": 4,
+    "health": 6,
+    "speed": 0.02,
+    "strength": 1.5,
+    "knockback": 1
+  },
+  "Mythic": {
+    "armor": 5,
+    "health": 8,
+    "speed": 0.025,
+    "strength": 2,
+    "knockback": 1
+  }
+}

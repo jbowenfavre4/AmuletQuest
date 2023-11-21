@@ -1,9 +1,3 @@
-enable-plugin: true
-quest-drop-mob: Creeper
-drop-percentage: 10
-quest-one-mob: Zombie
-quest-one-requirement: 25
-quest-two-mob: Skeleton
-quest-two-requirement: 50
-quest-three-mob: Creeper
-quest-three-requirement: 100
+enable-plugin: false
+quest-drop-chance: 10
+amulet-drop-chance: 10
