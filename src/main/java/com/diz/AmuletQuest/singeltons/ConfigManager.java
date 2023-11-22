@@ -1,16 +1,9 @@
 package com.diz.AmuletQuest.singeltons;
-import com.diz.AmuletQuest.Main;
-import com.diz.AmuletQuest.eventlisteners.CraftingInteractListener;
-import com.diz.AmuletQuest.eventlisteners.EntityDeathListener;
-import com.diz.AmuletQuest.eventlisteners.PlayerFindEntityListener;
-import com.diz.AmuletQuest.eventlisteners.PlayerFishListener;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.CountDownLatch;
 
 /**
  * Singleton class responsible for creating config file if needed and saving the values on startup.
