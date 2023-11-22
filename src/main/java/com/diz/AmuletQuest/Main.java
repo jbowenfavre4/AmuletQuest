@@ -55,6 +55,7 @@ public final class Main extends JavaPlugin {
             Bukkit.getPluginManager().registerEvents(new PlayerFishListener(), this);
             Bukkit.getPluginManager().registerEvents(new PlayerFindEntityListener(), this);
             Bukkit.getPluginManager().registerEvents(new CraftingInteractListener(), this);
+            Bukkit.getPluginManager().registerEvents(new CraftingCancelListener(), this);
 
             FileManager.getInstance(this);
 
