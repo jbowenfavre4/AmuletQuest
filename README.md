@@ -44,14 +44,20 @@ Note: Do not make any changes to the `quests.json` file.
 
 ## Known issues
 
-- Amulets also behaving like normal nether stars ([Issue #1](https://github.com/jbowenfavre4/AmuletQuest/issues/1))
-- Essence also behaving like normal glowstone dust ([Issue #2](https://github.com/jbowenfavre4/AmuletQuest/issues/2))
+- ~~Amulets also behaving like normal nether stars~~ ([Issue #1 (Fixed in 1.0.1)](https://github.com/jbowenfavre4/AmuletQuest/issues/1))
+- ~~Essence also behaving like normal glowstone dust~~ ([Issue #2 (Fixed in 1.0.1)](https://github.com/jbowenfavre4/AmuletQuest/issues/2))
 
 ## Future updates
 
 - Combining amulets
 
 ## Version History
+
+### [v1.0.1](https://github.com/jbowenfavre4/AmuletQuest/releases/tag/v1.0.1)
+- Release Date: TBD
+- Bug fixes:
+  - fixed amulets and essence behaving like normal nether stars and glowstone dust in crafting
+
 ### [v1.0.0](https://github.com/jbowenfavre4/AmuletQuest/releases/tag/v1.0.0)
 - Release Date: 2023-11-20
 - Initial Release

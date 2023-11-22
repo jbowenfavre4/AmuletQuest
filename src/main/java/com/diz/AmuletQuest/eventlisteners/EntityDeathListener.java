@@ -26,8 +26,6 @@ import java.util.*;
 // listens for mob deaths and handles dropping the quest book
 public class EntityDeathListener implements Listener {
 
-    private Integer defaultDropChance = 10;
-
     private JavaPlugin plugin;
 
     public EntityDeathListener(JavaPlugin plugin) {
