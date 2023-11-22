@@ -4,11 +4,16 @@ import com.diz.AmuletQuest.singeltons.FileManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public final class Main extends JavaPlugin {
 
     private static Integer questDropChance = 10;
     private static Integer amuletDropChance = 10;
     private static Boolean enablePlugin = false;
+
+    private static final Logger logger = Logger.getLogger("AmuletQuest");
 
     @Override
     public void onEnable() {
@@ -18,7 +23,7 @@ public final class Main extends JavaPlugin {
         this.saveDefaultConfig();
 
         if (this.getConfig().get("enable-plugin").toString().equals("true")) {
-            System.out.println("Amulet Quest plugin enabled");
+            logger.log(Level.INFO, "Amulet Quest plugin enabled");
 
             Integer userAmuletDropChance;
             Integer userQuestDropChance;
@@ -26,29 +31,29 @@ public final class Main extends JavaPlugin {
             try {
                 userAmuletDropChance = Integer.valueOf(this.getConfig().get("amulet-drop-chance").toString());
             } catch (NumberFormatException e) {
-                System.out.println("Error while reading config value for amulet-drop-chance");
+                logger.log(Level.WARNING, "Error while reading config value for amulet-drop-chance");
                 userAmuletDropChance = null;
             }
 
             try {
                 userQuestDropChance = Integer.valueOf(this.getConfig().get("quest-drop-chance").toString());
             } catch (NumberFormatException e) {
-                System.out.println("Error while reading config value for quest-drop-chance");
+                logger.log(Level.WARNING, "Error while reading config value for quest-drop-chance");
                 userQuestDropChance = null;
             }
 
             if (userQuestDropChance != null && userQuestDropChance > 0 && userQuestDropChance instanceof Integer) {
                 questDropChance = userQuestDropChance;
-                System.out.println("Quest drop chance set to " + userQuestDropChance + "%");
+                logger.log(Level.INFO, "Quest drop chance set to " + userQuestDropChance + "%");
             } else {
-                System.out.println("Invalid quest-drop-chance value, setting to default (10%)");
+                logger.log(Level.WARNING, "Invalid quest-drop-chance value, setting to default (10%)");
             }
 
             if (userAmuletDropChance != null && userAmuletDropChance > 0 && userAmuletDropChance instanceof Integer) {
                 amuletDropChance = userAmuletDropChance;
-                System.out.println("Amulet drop chance set to " + userAmuletDropChance + "%");
+                logger.log(Level.INFO, "Amulet drop chance set to " + userAmuletDropChance + "%");
             } else {
-                System.out.println("Invalid amulet-drop-chance value, setting to default (10%)");
+                logger.log(Level.WARNING, "Invalid amulet-drop-chance value, setting to default (10%)");
             }
 
             Bukkit.getPluginManager().registerEvents(new EntityDeathListener(this), this);
@@ -60,7 +65,7 @@ public final class Main extends JavaPlugin {
             FileManager.getInstance(this);
 
         } else {
-            System.out.println("Amulet Quest plugin disabled in the config");
+            logger.log(Level.INFO, "Amulet Quest plugin disabled in the config");
         }
 
     }
